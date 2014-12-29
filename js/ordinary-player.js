@@ -6,10 +6,13 @@ function OrdinaryPlayer(name, hp, attackForce) {
 
 OrdinaryPlayer.prototype.attack = function (player) {
   var arrmor = 0;
-  if (player.armor) {
-    arrmor = player.armor;
+  if (player.armor.defensive) {
+    defensive = player.armor.defensive;
   }
-  return player.hp - (this.attackForce - arrmor);
+  if(defensive > this.attackForce) {
+    defensive = this.attackForce;
+  }
+  return player.hp - (this.attackForce - defensive);
 };
 
 module.exports = OrdinaryPlayer;
