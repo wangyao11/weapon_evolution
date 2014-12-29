@@ -11,18 +11,22 @@ playStart.start = function(zhangsan, li) {
       result += '张三输了';
       break;
     }
-    result += zhangsan.name + '攻击' + li.name + ',' +
-    li.name + '受到' + zhangsan.attackForce + '点伤害,' +
-    li.name + '还剩' + li.hp + '血量\n';
+    result += '普通人' + zhangsan.name + '攻击了战士' +
+      li.name+ ',' + li.name + '受到了' +
+      zhangsan.attackForce +'点伤害,' +
+      li.name + '剩余生命：' + li.hp + '\n';
+
 
     zhangsan.hp = li.attack(zhangsan);
     if (li.hp <= 0) {
       result += '李斯输了';
       break;
     }
-    result += li.name + '攻击' + zhangsan.name + ',' +
-    zhangsan.name + '受到' + li.attackForce + '点伤害,' +
-    zhangsan.name + '还剩' + zhangsan.hp + '血量\n';
+
+    result += '战士' + li.name + '用'+ li.weapon.name +'攻击了普通人' +
+      zhangsan.name+ ',' + zhangsan.name + '受到了' +
+      (li.weapon.attackForce + li.attackForce) +
+      '点伤害,' + zhangsan.name + '剩余生命：' + zhangsan.hp + '\n';
   }
   return result;
 }
