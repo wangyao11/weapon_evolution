@@ -4,8 +4,12 @@ function OrdinaryPlayer(name, hp, attackForce) {
   this.attackForce = attackForce;
 }
 
-OrdinaryPlayer.prototype.attack = function (hp) {
-  return hp - this.attackForce;
+OrdinaryPlayer.prototype.attack = function (player) {
+  var arrmor = 0;
+  if (player.armor) {
+    arrmor = player.armor;
+  }
+  return player.hp - (this.attackForce - arrmor);
 };
 
 module.exports = OrdinaryPlayer;
