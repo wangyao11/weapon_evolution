@@ -3,6 +3,8 @@ jest.dontMock('../js/ordinary-player');
 jest.dontMock('../js/armor');
 jest.dontMock('../js/weapon');
 jest.dontMock('../js/real-time-effect');
+jest.dontMock('../js/delay-effect');
+jest.dontMock('lodash');
 
 describe('WarriorPlayer', function() {
 
@@ -10,6 +12,7 @@ describe('WarriorPlayer', function() {
   var OrdinaryPlayer = require('../js/ordinary-player');
   var Armor = require('../js/armor');
   var Weapon = require('../js/weapon');
+  var DelayEffect = require('../js/delay-effect');
   var RealTimeEffect = require('../js/real-time-effect');
 
   describe('#getAttackInformation()', function() {
@@ -39,7 +42,7 @@ describe('WarriorPlayer', function() {
       expect(result).toBe('战士张三用屠龙刀攻击了普通人李四,李四受到了8点伤害,李四剩余生命：12\n\n');
     });
 
-    it('shuold return corrcet string', function() {
+    it('shuold return crit string', function() {
 
       var lisi = new OrdinaryPlayer('李四', 20, 10);
       var armor = new Armor('麒麟甲', 5);
@@ -52,6 +55,34 @@ describe('WarriorPlayer', function() {
 
       expect(result).toBe('战士张三用屠龙刀攻击了普通人李四,张三发动了致命一击,李四受到了24点伤害,李四剩余生命：-4\n\n');
     });
-    
+
+    it('shuold return fire string', function() {
+
+      var lisi = new OrdinaryPlayer('李四', 20, 10);
+      var armor = new Armor('麒麟甲', 5);
+      var delayEffects  = [new DelayEffect('fire', 2, 2, 1)];
+      var weapon = new Weapon('屠龙刀', 3, null, delayEffects);
+      var zhangsan = new WarriorPlayer('张三',50, 5, armor, weapon);
+
+      var result = zhangsan.getAttackInformation(lisi);
+
+      expect(result).toBe('战士张三用屠龙刀攻击了普通人李四,李四受到了8点伤害,李四着火了,李四剩余生命：12\n' +
+        '李四受到2点火焰伤害,李四剩余生命：10\n\n');
+    });
+
+    it('shuold return venom string', function() {
+
+      var lisi = new OrdinaryPlayer('李四', 20, 10);
+      var armor = new Armor('麒麟甲', 5);
+      var delayEffects  = [new DelayEffect('venom', 2, 2, 1)];
+      var weapon = new Weapon('屠龙刀', 3, null, delayEffects);
+      var zhangsan = new WarriorPlayer('张三',50, 5, armor, weapon);
+
+      var result = zhangsan.getAttackInformation(lisi);
+
+      expect(result).toBe('战士张三用屠龙刀攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：12\n' +
+      '李四受到2点毒性伤害,李四剩余生命：10\n\n');
+    });
+
   });
 });
