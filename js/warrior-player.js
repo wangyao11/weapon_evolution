@@ -7,11 +7,13 @@ function WarriorPlayer(name, hp, attackForce, armor, weapon) {
 }
 
 WarriorPlayer.prototype.attack = function (player) {
+
   var weaponAttackForce = 0;
   if (this.weapon !== '') {
     weaponAttackForce = this.weapon.attackForce;
   }
-  return player.hp - (this.attackForce + weaponAttackForce);
+  player.hp -= (this.attackForce + weaponAttackForce);
+
 };
 
 WarriorPlayer.prototype.getAttackInformation = function (player) {
@@ -19,11 +21,10 @@ WarriorPlayer.prototype.getAttackInformation = function (player) {
   if (this.weapon !== '') {
     weaponAttackForce = this.weapon.attackForce;
   }
-
   var result = '战士' + this.name + '用'+ this.weapon.name +'攻击了普通人' +
     player.name+ ',' + player.name + '受到了' +
     (this.weapon.attackForce + this.attackForce) +
-    '点伤害,' + player.name + '剩余生命：' + (player.hp - this.attackForce - weaponAttackForce)  + '\n';
+    '点伤害,' + player.name + '剩余生命：' + player.hp + '\n\n';
 
   return result;
 };
@@ -39,6 +40,6 @@ WarriorPlayer.prototype.getCriticalStrikeInformation = function (player) {
     (weaponAttackForce + this.attackForce) * 3 + '点伤害,' +
     player.name + '剩余生命：' + (player.hp - (this.attackForce + weaponAttackForce) * 3) + '\n';
 
-    return result;
+  return result;
 };
 module.exports = WarriorPlayer;
