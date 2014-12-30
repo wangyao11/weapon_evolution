@@ -17,10 +17,10 @@ describe('WarriorPlayer', function() {
       var armor = new Armor('麒麟甲', 5);
       var weapon = new Weapon('屠龙刀', 7);
       var li = new WarriorPlayer('李斯',50, 10, armor, weapon);
-
+      li.attack(zhangsan);
       var result = li.getAttackInformation(zhangsan);
 
-      expect(result).toBe('战士李斯用屠龙刀攻击了普通人张三,张三受到了17点伤害,张三剩余生命：33\n');
+      expect(result).toBe('战士李斯用屠龙刀攻击了普通人张三,张三受到了17点伤害,张三剩余生命：33\n\n');
     });
   });
 
