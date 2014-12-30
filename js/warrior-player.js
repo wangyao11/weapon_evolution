@@ -2,12 +2,16 @@ function WarriorPlayer(name, hp, attackForce, armor, weapon) {
   this.name = name;
   this.hp = hp;
   this.attackForce = attackForce;
-  this.armor = armor || null;
-  this.weapon = weapon; || null;
+  this.armor = armor || '';
+  this.weapon = weapon || '';
 }
 
 WarriorPlayer.prototype.attack = function (player) {
-  return player.hp - (this.attackForce + this.weapon.attackForce);
+  var weaponAttackForce = 0;
+  if (this.weapon !== '') {
+    weaponAttackForce = this.weapon.attackForce;
+  }
+  return player.hp - (this.attackForce + weaponAttackForce);
 };
 
 

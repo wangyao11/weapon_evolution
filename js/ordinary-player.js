@@ -5,8 +5,8 @@ function OrdinaryPlayer(name, hp, attackForce) {
 }
 
 OrdinaryPlayer.prototype.attack = function (player) {
-  var arrmor = 0;
-  if (player.armor.defensive) {
+  var defensive = 0;
+  if (player.armor !== '') {
     defensive = player.armor.defensive;
   }
   if (defensive > this.attackForce) {
