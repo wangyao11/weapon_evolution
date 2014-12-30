@@ -2,12 +2,15 @@ jest.dontMock('../js/warrior-player');
 jest.dontMock('../js/ordinary-player');
 jest.dontMock('../js/armor');
 jest.dontMock('../js/weapon');
+jest.dontMock('../js/real-time-effect');
+
 describe('WarriorPlayer', function() {
 
   var WarriorPlayer = require('../js/warrior-player');
   var OrdinaryPlayer = require('../js/ordinary-player');
   var Armor = require('../js/armor');
   var Weapon = require('../js/weapon');
+  var RealTimeEffect = require('../js/real-time-effect');
 
   describe('#getAttackInformation()', function() {
 
@@ -17,25 +20,38 @@ describe('WarriorPlayer', function() {
       var armor = new Armor('麒麟甲', 5);
       var weapon = new Weapon('屠龙刀', 7);
       var li = new WarriorPlayer('李斯',50, 10, armor, weapon);
-      li.attack(zhangsan);
       var result = li.getAttackInformation(zhangsan);
 
       expect(result).toBe('战士李斯用屠龙刀攻击了普通人张三,张三受到了17点伤害,张三剩余生命：33\n\n');
     });
-  });
-
-  describe('#getCriticalStrikeInformation()', function() {
 
     it('shuold return corrcet string', function() {
 
       var lisi = new OrdinaryPlayer('李四', 20, 10);
       var armor = new Armor('麒麟甲', 5);
-      var weapon = new Weapon('屠龙刀', 3);
+      var crit = new RealTimeEffect('crit', 3, 0);
+      var weapon = new Weapon('屠龙刀', 3, crit);
+
       var zhangsan = new WarriorPlayer('张三',50, 5, armor, weapon);
 
-      var result = zhangsan.getCriticalStrikeInformation(lisi);
+      var result = zhangsan.getAttackInformation(lisi);
 
-      expect(result).toBe('战士张三用屠龙刀攻击了普通人李四,张三发动了致命一击,李四受到了24点伤害,李四剩余生命：-4\n');
+      expect(result).toBe('战士张三用屠龙刀攻击了普通人李四,李四受到了8点伤害,李四剩余生命：12\n\n');
     });
+
+    it('shuold return corrcet string', function() {
+
+      var lisi = new OrdinaryPlayer('李四', 20, 10);
+      var armor = new Armor('麒麟甲', 5);
+      var crit = new RealTimeEffect('crit', 3, 1);
+      var weapon = new Weapon('屠龙刀', 3, crit);
+
+      var zhangsan = new WarriorPlayer('张三',50, 5, armor, weapon);
+
+      var result = zhangsan.getAttackInformation(lisi);
+
+      expect(result).toBe('战士张三用屠龙刀攻击了普通人李四,张三发动了致命一击,李四受到了24点伤害,李四剩余生命：-4\n\n');
+    });
+    
   });
 });
