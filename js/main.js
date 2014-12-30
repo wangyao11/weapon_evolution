@@ -3,6 +3,7 @@ var WarriorPlayer = require('../js/warrior-player');
 var PlayStart = require('../js/play-start.js');
 var Armor = require('../js/armor');
 var Weapon = require('../js/weapon');
+var RealTimeEffect = require('../js/real-time-effect');
 
 main();
 
