@@ -9,7 +9,7 @@ OrdinaryPlayer.prototype.attack = function (player) {
   if (player.armor.defensive) {
     defensive = player.armor.defensive;
   }
-  if(defensive > this.attackForce) {
+  if (defensive > this.attackForce) {
     defensive = this.attackForce;
   }
   return player.hp - (this.attackForce - defensive);
