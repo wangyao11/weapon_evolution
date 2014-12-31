@@ -19,16 +19,15 @@ WarriorPlayer.prototype.attack = function (player) {
   } else {
     player.hp -= (this.attackForce + weaponAttackForce);
   }
-
-
 };
 
 WarriorPlayer.prototype.getAttackInformation = function (player) {
   var weaponAttackForce = 0;
-  var crit = this.weapon.realTimeEffect;
   var result = '';
+  var crit = this.weapon.realTimeEffect;
   var fire = _.find(this.weapon.delayEffects, { name:'fire' });
   var venom = _.find(this.weapon.delayEffects, { name:'venom' });
+
   if (this.weapon !== '') {
     weaponAttackForce = this.weapon.attackForce;
   }
@@ -50,8 +49,7 @@ WarriorPlayer.prototype.getAttackInformation = function (player) {
       player.name +'剩余生命：' + player.hp + '\n' +
       player.name + '受到'+ venom.lethal +'点毒性伤害,' +
       player.name + '剩余生命：' + (player.hp - venom.lethal) + '\n\n';
-
-    player.hp -= player.hp - venom.lethal;
+    player.hp -= venom.lethal;
 
   } else if (fire && Math.random() < fire.probability) {
     player.hp -= (this.attackForce + weaponAttackForce);
@@ -63,7 +61,7 @@ WarriorPlayer.prototype.getAttackInformation = function (player) {
       player.name +'剩余生命：' + player.hp + '\n' +
       player.name + '受到'+ fire.lethal +'点火焰伤害,' +
       player.name + '剩余生命：' + (player.hp - fire.lethal) + '\n\n';
-    player.hp -= player.hp - fire.lethal;
+    player.hp -= fire.lethal;
 
   }else{
 
