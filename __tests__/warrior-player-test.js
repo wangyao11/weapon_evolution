@@ -28,7 +28,7 @@ describe('WarriorPlayer', function() {
       expect(result).toBe('战士李斯用屠龙刀攻击了普通人张三,张三受到了17点伤害,张三剩余生命：33\n\n');
     });
 
-    it('shuold return corrcet string', function() {
+    it('shuold return crit string', function() {
 
       var lisi = new OrdinaryPlayer('李四', 20, 10);
       var armor = new Armor('麒麟甲', 5);
