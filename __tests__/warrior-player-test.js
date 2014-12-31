@@ -4,6 +4,7 @@ jest.dontMock('../js/armor');
 jest.dontMock('../js/weapon');
 jest.dontMock('../js/real-time-effect');
 jest.dontMock('../js/delay-effect');
+jest.dontMock('../js/effect');
 jest.dontMock('lodash');
 
 describe('WarriorPlayer', function() {

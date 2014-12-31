@@ -1,4 +1,6 @@
 var _ = require('lodash');
+var Effect = require('./effect');
+
 
 function WarriorPlayer(name, hp, attackForce, armor, weapon) {
   this.name = name;
@@ -8,23 +10,9 @@ function WarriorPlayer(name, hp, attackForce, armor, weapon) {
   this.weapon = weapon || '';
 }
 
-WarriorPlayer.prototype.attack = function (player) {
-  var crit = this.weapon.realTimeEffect;
-  var weaponAttackForce = 0;
-  if (this.weapon !== '') {
-    weaponAttackForce = this.weapon.attackForce;
-  }
-  if (crit &&  Math.random() < crit.probability) {
-    player.hp -= (this.attackForce + weaponAttackForce) * 3;
-  } else {
-    player.hp -= (this.attackForce + weaponAttackForce);
-  }
-};
-
 WarriorPlayer.prototype.getAttackInformation = function (player) {
   var weaponAttackForce = 0;
   var result = '';
-  var crit = this.weapon.realTimeEffect;
   var fire = _.find(this.weapon.delayEffects, { name:'fire' });
   var venom = _.find(this.weapon.delayEffects, { name:'venom' });
 
@@ -32,13 +20,7 @@ WarriorPlayer.prototype.getAttackInformation = function (player) {
     weaponAttackForce = this.weapon.attackForce;
   }
 
-  if (crit && crit.name === 'crit' && Math.random() < crit.probability) {
-
-    player.hp -= (this.attackForce + weaponAttackForce) * crit.cap;
-
-    result = this.getCriticalStrikeInformation(player);
-
-  } else if (venom && Math.random() < venom.probability) {
+  if (venom && Math.random() < venom.probability) {
 
     player.hp -= (this.attackForce + weaponAttackForce);
 
@@ -63,13 +45,18 @@ WarriorPlayer.prototype.getAttackInformation = function (player) {
       player.name + '剩余生命：' + (player.hp - fire.lethal) + '\n\n';
     player.hp -= fire.lethal;
 
-  }else{
+  }else {
+    //重点看这里 
+    var realTimeEffect = this.weapon.getRealTimeEffect();
+    if (realTimeEffect) {
+      Effect = realTimeEffect;
+    }
 
-    player.hp -= (this.attackForce + weaponAttackForce);
+    player.hp -= Effect.calculationAp(this.attackForce, weaponAttackForce);
 
-    result = '战士' + this.name + '用'+ this.weapon.name +'攻击了普通人' +
-      player.name+ ',' + player.name + '受到了' +
-      (this.weapon.attackForce + this.attackForce) +
+    result = '战士' + this.name + '用' + this.weapon.name + '攻击了普通人' +
+      player.name + ',' + Effect.getString(this.name) + player.name + '受到了' +
+      Effect.calculationAp(this.attackForce, weaponAttackForce) +
       '点伤害,' + player.name + '剩余生命：' + player.hp + '\n\n';
 
   }
@@ -77,19 +64,4 @@ WarriorPlayer.prototype.getAttackInformation = function (player) {
   return result;
 };
 
-WarriorPlayer.prototype.getCriticalStrikeInformation = function (player) {
-  var weaponAttackForce = 0;
-  if (this.weapon !== '') {
-    weaponAttackForce = this.weapon.attackForce;
-  }
-
-  var crit = this.weapon.realTimeEffect;
-
-  var result = '战士' + this.name + '用'+ this.weapon.name +'攻击了普通人' +
-    player.name+ ',' + this.name + '发动了致命一击,' + player.name + '受到了' +
-    (weaponAttackForce + this.attackForce) * crit.cap + '点伤害,' +
-    player.name + '剩余生命：' + player.hp + '\n\n';
-
-  return result;
-};
 module.exports = WarriorPlayer;

@@ -2,6 +2,8 @@ function OrdinaryPlayer(name, hp, attackForce) {
   this.name = name;
   this.hp = hp;
   this.attackForce = attackForce;
+  this.state = '';
+  this.times = 0;
 }
 
 OrdinaryPlayer.prototype.attack = function (player) {
