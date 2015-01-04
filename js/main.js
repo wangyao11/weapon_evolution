@@ -13,8 +13,8 @@ function main() {
   var zhangsan = new OrdinaryPlayer('张三', 1000, 10);
 
   var realTimeEffect = new RealTimeEffect('crit', 3, 0.4);
-  var delayEffects  = [new DelayEffect('venom', 2, 2, 0.2),
-                       new DelayEffect('fire', 2, 2, 0.2)];
+  var delayEffects  = [new DelayEffect('venom', 2, 2, 0.2, '中毒了'),
+                       new DelayEffect('fire', 2, 2, 0.2, '着火了')];
   var weapon = new Weapon('屠龙刀', 7, realTimeEffect, delayEffects);
   var armor = new Armor('麒麟甲', 5);
   var li = new WarriorPlayer('李斯',100, 10, armor, weapon);
