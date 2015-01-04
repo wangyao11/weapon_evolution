@@ -6,7 +6,7 @@ function OrdinaryPlayer(name, hp, attackForce) {
   this.times = 0;
 }
 
-OrdinaryPlayer.prototype.attack = function (player) {
+OrdinaryPlayer.prototype.getAttackInformation = function (player) {
   var defensive = 0;
   if (player.armor !== '') {
     defensive = player.armor.defensive;
@@ -15,9 +15,7 @@ OrdinaryPlayer.prototype.attack = function (player) {
     defensive = this.attackForce;
   }
   player.hp -= (this.attackForce - defensive);
-};
 
-OrdinaryPlayer.prototype.getAttackInformation = function (player) {
   return '普通人' + this.name + '攻击了战士' +
     player.name+ ',' + player.name + '受到了' +
     (this.attackForce - player.armor.defensive) +'点伤害,' +

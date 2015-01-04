@@ -6,7 +6,6 @@ function playStart(argument) {
 playStart.start = function(zhangsan, li) {
   var result = '';
   while (true) {
-    zhangsan.attack(li);
     result += zhangsan.getAttackInformation(li);
 
     if (li.hp <= 0) {
