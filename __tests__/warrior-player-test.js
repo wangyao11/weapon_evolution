@@ -61,14 +61,13 @@ describe('WarriorPlayer', function() {
 
       var lisi = new OrdinaryPlayer('李四', 20, 10);
       var armor = new Armor('麒麟甲', 5);
-      var delayEffects  = [new DelayEffect('fire', 2, 2, 1)];
+      var delayEffects  = [new DelayEffect('fire', 2, 2, 1, '着火了')];
       var weapon = new Weapon('屠龙刀', 3, null, delayEffects);
       var zhangsan = new WarriorPlayer('张三',50, 5, armor, weapon);
 
       var result = zhangsan.getAttackInformation(lisi);
 
-      expect(result).toBe('战士张三用屠龙刀攻击了普通人李四,李四受到了8点伤害,李四着火了,李四剩余生命：12\n' +
-        '李四受到2点火焰伤害,李四剩余生命：10\n\n');
+      expect(result).toBe('战士张三用屠龙刀攻击了普通人李四,李四受到了8点伤害,李四着火了,李四剩余生命：12\n\n');
     });
 
     it('shuold return venom string', function() {

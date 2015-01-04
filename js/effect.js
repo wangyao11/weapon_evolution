@@ -11,8 +11,12 @@ Effect.calculationAp = function(playerAttackForce, weaponAttackForce) {
 
 };
 
-Effect.getString = function() {
+Effect.getRealTimeString = function() {
     return '';
+};
+
+Effect.getDelayString = function() {
+  return '';
 };
 
 module.exports = Effect;

@@ -21,4 +21,12 @@ Weapon.prototype.getRealTimeEffect = function (name) {
   return result;
 };
 
+Weapon.prototype.getDelayEffect = function (first_argument) {
+  var result;
+  var fire = _.find(this.delayEffects,{name:'fire'});
+  if (fire && Math.random() < fire.probability) {
+    result = fire;
+  }
+  return result;
+};
 module.exports = Weapon;

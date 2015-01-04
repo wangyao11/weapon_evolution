@@ -14,7 +14,6 @@ playStart.start = function(zhangsan, li) {
       break;
     }
 
-    //li.attack(zhangsan);
     result += li.getAttackInformation(zhangsan);
     if (zhangsan.hp <= 0) {
       result += '张三输了';
@@ -22,6 +21,6 @@ playStart.start = function(zhangsan, li) {
     }
   }
   return result;
-}
+};
 
 module.exports = playStart;

@@ -13,7 +13,6 @@ function WarriorPlayer(name, hp, attackForce, armor, weapon) {
 WarriorPlayer.prototype.getAttackInformation = function (player) {
   var weaponAttackForce = 0;
   var result = '';
-  var fire = _.find(this.weapon.delayEffects, { name:'fire' });
   var venom = _.find(this.weapon.delayEffects, { name:'venom' });
 
   if (this.weapon !== '') {
@@ -33,31 +32,24 @@ WarriorPlayer.prototype.getAttackInformation = function (player) {
       player.name + '剩余生命：' + (player.hp - venom.lethal) + '\n\n';
     player.hp -= venom.lethal;
 
-  } else if (fire && Math.random() < fire.probability) {
-    player.hp -= (this.attackForce + weaponAttackForce);
-
-    result = '战士' + this.name + '用'+ this.weapon.name +'攻击了普通人' +
-      player.name+ ',' + player.name + '受到了' +
-      (this.weapon.attackForce + this.attackForce) +
-      '点伤害,'+ player.name + '着火了,' +
-      player.name +'剩余生命：' + player.hp + '\n' +
-      player.name + '受到'+ fire.lethal +'点火焰伤害,' +
-      player.name + '剩余生命：' + (player.hp - fire.lethal) + '\n\n';
-    player.hp -= fire.lethal;
-
-  }else {
-    //重点看这里 
+  }
+  else {
     var realTimeEffect = this.weapon.getRealTimeEffect();
+    var delayEffect = this.weapon.getDelayEffect();
     if (realTimeEffect) {
       Effect = realTimeEffect;
     }
+    if (delayEffect) {
+      Effect = delayEffect;
+    }
+
 
     player.hp -= Effect.calculationAp(this.attackForce, weaponAttackForce);
 
     result = '战士' + this.name + '用' + this.weapon.name + '攻击了普通人' +
-      player.name + ',' + Effect.getString(this.name) + player.name + '受到了' +
+      player.name + ',' + Effect.getRealTimeString(this.name) + player.name + '受到了' +
       Effect.calculationAp(this.attackForce, weaponAttackForce) +
-      '点伤害,' + player.name + '剩余生命：' + player.hp + '\n\n';
+      '点伤害,' + Effect.getDelayString(player.name) + player.name + '剩余生命：' + player.hp + '\n\n';
 
   }
 
