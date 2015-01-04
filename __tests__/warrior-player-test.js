@@ -74,14 +74,39 @@ describe('WarriorPlayer', function() {
 
       var lisi = new OrdinaryPlayer('李四', 20, 10);
       var armor = new Armor('麒麟甲', 5);
-      var delayEffects  = [new DelayEffect('venom', 2, 2, 1)];
+      var delayEffects  = [new DelayEffect('venom', 2, 2, 1, '中毒了')];
       var weapon = new Weapon('屠龙刀', 3, null, delayEffects);
       var zhangsan = new WarriorPlayer('张三',50, 5, armor, weapon);
 
       var result = zhangsan.getAttackInformation(lisi);
 
-      expect(result).toBe('战士张三用屠龙刀攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：12\n' +
-      '李四受到2点毒性伤害,李四剩余生命：10\n\n');
+      expect(result).toBe('战士张三用屠龙刀攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：12\n\n');
+    });
+
+    it('shuold return vertigo string', function() {
+
+      var lisi = new OrdinaryPlayer('李四', 20, 10);
+      var armor = new Armor('麒麟甲', 5);
+      var delayEffects  = [new DelayEffect('vertigo', 2, 2, 1, '眩晕了')];
+      var weapon = new Weapon('屠龙刀', 3, null, delayEffects);
+      var zhangsan = new WarriorPlayer('张三',50, 5, armor, weapon);
+
+      var result = zhangsan.getAttackInformation(lisi);
+
+      expect(result).toBe('战士张三用屠龙刀攻击了普通人李四,李四受到了8点伤害,李四眩晕了,李四剩余生命：12\n\n');
+    });
+
+    it('shuold return frost string', function() {
+
+      var lisi = new OrdinaryPlayer('李四', 20, 10);
+      var armor = new Armor('麒麟甲', 5);
+      var delayEffects  = [new DelayEffect('frost', 2, 2, 1, '冰封了')];
+      var weapon = new Weapon('屠龙刀', 3, null, delayEffects);
+      var zhangsan = new WarriorPlayer('张三',50, 5, armor, weapon);
+
+      var result = zhangsan.getAttackInformation(lisi);
+
+      expect(result).toBe('战士张三用屠龙刀攻击了普通人李四,李四受到了8点伤害,李四冰封了,李四剩余生命：12\n\n');
     });
 
   });
