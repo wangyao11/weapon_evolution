@@ -9,6 +9,7 @@ function WarriorPlayer(name, hp, attackForce, armor, weapon) {
   this.weapon = weapon || '';
 }
 
+
 WarriorPlayer.prototype.getAttackInformation = function (player) {
   var result = '';
   var weaponAttackForce = 0;
@@ -21,8 +22,11 @@ WarriorPlayer.prototype.getAttackInformation = function (player) {
   var delayEffect = this.weapon.getDelayEffect();
 
   realTimeEffect ? Effect = realTimeEffect : Effect;
-  delayEffect ? Effect = delayEffect : Effect;
-
+  if (delayEffect) {
+    Effect = delayEffect;
+    player.state = delayEffect.name;
+    player.times = delayEffect.times;
+  }
   player.hp -= Effect.calculationAp(this.attackForce, weaponAttackForce);
 
   result = '战士' + this.name + '用' + this.weapon.name + '攻击了普通人' +
@@ -31,6 +35,10 @@ WarriorPlayer.prototype.getAttackInformation = function (player) {
     '点伤害,' + Effect.getDelayString(player.name) + player.name + '剩余生命：' + player.hp + '\n\n';
 
   return result;
+};
+
+WarriorPlayer.prototype.getWeapon = function () {
+  return this.weapon;
 };
 
 module.exports = WarriorPlayer;
