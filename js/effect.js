@@ -5,15 +5,15 @@ function Effect(){
 
 }
 
-Effect.calculationAp = function(playerAttackForce, weaponAttackForce) {
+Effect.prototype.calculationAp = function(playerAttackForce, weaponAttackForce) {
   return (playerAttackForce + weaponAttackForce);
 };
 
-Effect.getRealTimeString = function() {
+Effect.prototype.getRealTimeString = function() {
   return '';
 };
 
-Effect.getDelayString = function() {
+Effect.prototype.getDelayString = function() {
   return '';
 };
 

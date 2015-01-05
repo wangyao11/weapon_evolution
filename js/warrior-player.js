@@ -24,18 +24,26 @@ WarriorPlayer.prototype.getAttackInformation = function (player) {
   var realTimeEffect = this.weapon.getRealTimeEffect();
   var delayEffect = this.weapon.getDelayEffect();
 
-  realTimeEffect ? Effect = realTimeEffect : Effect;
+  var effect = (realTimeEffect ? realTimeEffect : new Effect());
+
   if (delayEffect) {
-    Effect = delayEffect;
     player.state = delayEffect.name;
-    player.times = delayEffect.times;
+    effect = delayEffect;
+    if (delayEffect.name === '火' || delayEffect.name === '毒' ) {
+      player.times = delayEffect.times;
+    } else if (delayEffect.name === '冰冻') {
+      player.times = delayEffect.times;
+      player.frostTimes ++;
+    } else if (delayEffect.name === '眩晕') {
+      player.vertigoTimes += delayEffect.times;
+    }
   }
-  player.hp -= Effect.calculationAp(this.attackForce, weaponAttackForce);
+  player.hp -= effect.calculationAp(this.attackForce, weaponAttackForce);
 
   result = '战士' + this.name + '用' + this.weapon.name + '攻击了普通人' +
-    player.name + ',' + Effect.getRealTimeString(this.name) + player.name + '受到了' +
-    Effect.calculationAp(this.attackForce, weaponAttackForce) +
-    '点伤害,' + Effect.getDelayString(player.name) + player.name + '剩余生命：' + player.hp + '\n\n';
+    player.name + ',' + effect.getRealTimeString(this.name) + player.name + '受到了' +
+    effect.calculationAp(this.attackForce, weaponAttackForce) +
+    '点伤害,' + effect.getDelayString(player.name) + player.name + '剩余生命：' + player.hp + '\n\n';
 
   return result;
 };
