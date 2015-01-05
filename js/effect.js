@@ -6,13 +6,11 @@ function Effect(){
 }
 
 Effect.calculationAp = function(playerAttackForce, weaponAttackForce) {
-
-    return (playerAttackForce + weaponAttackForce);
-
+  return (playerAttackForce + weaponAttackForce);
 };
 
 Effect.getRealTimeString = function() {
-    return '';
+  return '';
 };
 
 Effect.getDelayString = function() {

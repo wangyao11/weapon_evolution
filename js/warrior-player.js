@@ -1,13 +1,16 @@
 var _ = require('lodash');
 var Effect = require('./effect');
+var OrdinaryPlayer = require('./ordinary-player');
 
 function WarriorPlayer(name, hp, attackForce, armor, weapon) {
-  this.name = name;
-  this.hp = hp;
-  this.attackForce = attackForce;
+  OrdinaryPlayer.call(this, name, hp, attackForce);
+
   this.armor = armor || '';
   this.weapon = weapon || '';
 }
+
+WarriorPlayer.prototype = Object.create(OrdinaryPlayer.prototype);
+WarriorPlayer.prototype.constructor = WarriorPlayer;
 
 
 WarriorPlayer.prototype.getAttackInformation = function (player) {

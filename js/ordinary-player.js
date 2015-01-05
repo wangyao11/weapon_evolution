@@ -2,7 +2,7 @@ var _ = require('lodash');
 
 function OrdinaryPlayer(name, hp, attackForce) {
   this.name = name;
-  this.hp = hp;
+  this.hp = hp || 100;
   this.attackForce = attackForce;
   this.state = '';
   this.times = 0;
