@@ -1,6 +1,7 @@
-function Frost(name, times, probability) {
+function Frost(name, times, round, probability) {
   this.name = name;
   this.times = times;
+  this.round = round;
   this.probability = probability;
 }
 
