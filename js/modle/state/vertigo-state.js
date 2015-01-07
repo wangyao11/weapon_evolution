@@ -9,9 +9,16 @@ VertigoState.prototype.getStateString = function (player) {
   return player.name + '晕倒了,无法攻击,眩晕还剩:' + this.times + '轮\n\n';
 };
 
-VertigoState.prototype.judge = function (state) {
+VertigoState.prototype.judge = function () {
 
-  return this.times > 0 ? 'yes' : state = '';
+  return this.times > 0 ? 'yes' : '';
 
 };
+
+VertigoState.prototype.judgeState = function (player) {
+  if (!this.times > 0) {
+    player.state = '';
+  }
+};
+
 module.exports = VertigoState;

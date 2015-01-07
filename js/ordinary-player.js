@@ -10,22 +10,23 @@ function OrdinaryPlayer(name, hp, attackForce) {
 OrdinaryPlayer.prototype.getAttackInformation = function (player) {
 
 
-    if (this.state !== '' && this.state.judge(this.state) === 'yes') {
+    if (this.state !== '' && this.state.judge() === 'yes') {
 
       result = this.state.getStateString(this);
+      this.state.judgeState(this);
 
-    } else if (this.state !== '' && this.state.judge(this.state) === 'no') {
+    } else if (this.state !== '' && this.state.judge() === 'no') {
 
       result = this.state.getStateString(this);
 
       this.attack(player);
-
       result += this.getString(player);
+      this.state.judgeState(this);
+
     } else {
       this.attack(player);
       var result =this.getString(player);
     }
-
   return result;
 };
 

@@ -30,12 +30,28 @@ State.prototype.getVertigoState = function (effect, state) {
   return result;
 };
 
-State.prototype.getFireState = function (effect, player) {
-    return new FireState(effect.name, effect.times, effect.lethal);
+State.prototype.getFireState = function (effect, state) {
+    var result;
+    if (state !== '' && state.name === '火') {
+        state.tier ++;
+        state.times = effect.times;
+        result = state;
+    } else {
+        result = new FireState(effect.name, effect.times, effect.lethal);
+    }
+    return result;
 };
 
-State.prototype.getVenomState = function (effect, player) {
-    return new VenomState(effect.name, effect.times, effect.lethal);
+State.prototype.getVenomState = function (effect, state) {
+    var result;
+    if (state !== '' && state.name === '毒') {
+        state.tier ++;
+        state.times = effect.times;
+        result = state;
+    } else {
+        result = new VenomState(effect.name, effect.times, effect.lethal);
+    }
+    return result;
 };
 
 module.exports = State;
