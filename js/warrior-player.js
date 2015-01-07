@@ -42,7 +42,7 @@ WarriorPlayer.prototype.getAttackInformation = function (player) {
 
 WarriorPlayer.prototype.additionalState = function (effect, player) {
   var state = new State();
-  player.state = state.getState(effect);
+  player.state = state.getState(effect, player.state);
 };
 
 module.exports = WarriorPlayer;

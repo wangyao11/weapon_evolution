@@ -3,33 +3,38 @@ var VenomState = require('./venom-state');
 var FireState = require('./fire-state');
 
 function State() {
-  // this.name = name;
-  // this.times = times;
-  // this.vertigoTimes = 0;
-  // this.frostTimes = 0;
+
 }
 
-State.prototype.getState = function (effect) {
+State.prototype.getState = function (effect, state) {
   var result;
   if (effect.name === '眩晕') {
-    result = this.getVertigoState(effect);
+    result = this.getVertigoState(effect, state);
   } else if (effect.name === '火') {
-      result = this.getFireState(effect);
+      result = this.getFireState(effect, state);
   } else if (effect.name === '毒') {
-      result = this.getVenomState(effect);
+      result = this.getVenomState(effect, state);
   }
   return result;
 };
 
-State.prototype.getVertigoState = function (effect) {
-  return new VertigoState(effect.name, effect.times);
+State.prototype.getVertigoState = function (effect, state) {
+    var result;
+
+    if (state !== '' && state.name === '眩晕') {
+        state.times += effect.times;
+        result = state;
+    } else {
+        result = new VertigoState(effect.name, effect.times);
+    }
+  return result;
 };
 
-State.prototype.getFireState = function (effect) {
+State.prototype.getFireState = function (effect, player) {
     return new FireState(effect.name, effect.times, effect.lethal);
 };
 
-State.prototype.getVenomState = function (effect) {
+State.prototype.getVenomState = function (effect, player) {
     return new VenomState(effect.name, effect.times, effect.lethal);
 };
 

@@ -17,10 +17,10 @@ function main() {
   var zhangsan = new OrdinaryPlayer('张三', 1000, 10);
 
 
-  var effects = [new Venom('毒', 2, 2, 0.1),
+  var effects = [new Venom('毒', 2, 2, 0),
                  new Crit('crit', 3, 0),
                  new Fire('火', 2, 2, 0),
-                 new Vertigo('眩晕', 2, 0),
+                 new Vertigo('眩晕', 2, 0.5),
                  new Frost('冰冻', 2, 0)];
 
   var weapon = new Weapon('屠龙刀', 7, effects);
