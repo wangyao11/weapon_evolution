@@ -1,9 +1,8 @@
 var _ = require('lodash');
-function Weapon(name, attackForce, realTimeEffect, delayEffects) {
+function Weapon(name, attackForce, effects) {
   this.name = name;
   this.attackForce = attackForce;
-  this.realTimeEffect = realTimeEffect || '';
-  this.delayEffects = delayEffects || '';
+  this.effects = effects || '';
 
 }
 
@@ -11,26 +10,26 @@ Weapon.prototype.getAp = function () {
   return this.attackForce;
 };
 
-Weapon.prototype.getRealTimeEffect = function (name) {
+Weapon.prototype.getEffect = function () {
   var result;
+  _this = this;
 
-  var crit = this.realTimeEffect;
-  if (crit && crit.name === 'crit' && Math.random() < crit.probability) {
+  _.forEach(this.effects, function(effect) {
+    var Effect = _.find(_this.effects,{name:effect.name});
+    if (effect && Math.random() < effect.probability) {
+      result = effect;
+    }
+  });
+  return result;
+};
+
+Weapon.prototype.getCrit = function() {
+  var result;
+  var crit = _.find(this.effects, {name:'crit'});
+  if (crit && Math.random() < crit.probability) {
     result = crit;
   }
   return result;
 };
 
-Weapon.prototype.getDelayEffect = function (first_argument) {
-  var result;
-  _this = this;
-  _.forEach(this.delayEffects, function(delayEffect) {
-    var delayEffect = _.find(_this.delayEffects,{name:delayEffect.name});
-    if (delayEffect && Math.random() < delayEffect.probability) {
-      result = delayEffect;
-    }
-  });
-
-  return result;
-};
 module.exports = Weapon;

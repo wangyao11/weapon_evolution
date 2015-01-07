@@ -12,14 +12,8 @@ playStart.PK = function(playerOne, playerTwo) {
       result += playerOne.name + '输了';
       break;
     }
-    if (playerOne.times > 0) {
-      result += playerOne.getDelayEffectInformation(playerTwo);
-    }
-    if (playerOne.vertigoTimes > 0 || playerOne.frostTimes > 0) {
-      result += playerOne.getDelayEffectInformation(playerTwo);
-    } else {
-      result += playerOne.getAttackInformation(playerTwo);
-    }
+
+    result += playerOne.getAttackInformation(playerTwo);
     if (playerTwo.hp <= 0) {
       result += playerTwo.name + '输了';
       break;

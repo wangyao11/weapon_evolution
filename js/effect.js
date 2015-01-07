@@ -9,11 +9,11 @@ Effect.prototype.calculationAp = function(playerAttackForce, weaponAttackForce) 
   return (playerAttackForce + weaponAttackForce);
 };
 
-Effect.prototype.getRealTimeString = function() {
+Effect.prototype.getCritString = function() {
   return '';
 };
 
-Effect.prototype.getDelayString = function() {
+Effect.prototype.getEffectString = function() {
   return '';
 };
 
