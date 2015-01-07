@@ -9,7 +9,7 @@ Crit.prototype.getCritString = function (name) {
 };
 
 Crit.prototype.calculationAp = function (playerAttackForce, weaponAttackForce) {
-  return (playerAttackForce + weaponAttackForce) * this.multiple;
+  return (playerAttackForce + weaponAttackForce) * 3;
 };
 
 Crit.prototype.getEffectString = function(){

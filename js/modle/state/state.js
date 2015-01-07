@@ -14,6 +14,8 @@ State.prototype.getState = function (effect, state) {
       result = this.getFireState(effect, state);
   } else if (effect.name === '毒') {
       result = this.getVenomState(effect, state);
+  } else if (effect.name === 'crit') {
+      result = '';
   }
   return result;
 };

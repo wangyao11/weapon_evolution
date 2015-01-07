@@ -18,7 +18,7 @@ function main() {
 
 
   var effects = [new Venom('毒', 2, 2, 0.4),
-                 new Crit('crit', 3, 0),
+                 new Crit('crit', 3, 0.4),
                  new Fire('火', 2, 2, 0),
                  new Vertigo('眩晕', 2, 0),
                  new Frost('冰冻', 2, 0)];
