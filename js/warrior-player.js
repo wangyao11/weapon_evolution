@@ -26,12 +26,7 @@ WarriorPlayer.prototype.getAttackInformation = function (player) {
   }
 
   var effect = (effect ? effect : new Effect());
-  var crit = this.weapon.getCrit();
 
-  if(crit){
-    effect.calculationAp = crit.calculationAp;
-    effect.getCritString = crit.getCritString;
-  }
   player.hp -= effect.calculationAp(this.attackForce, weaponAttackForce);
 
   result = '战士' + this.name +
