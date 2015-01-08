@@ -8,7 +8,7 @@ describe('PlayStart', function() {
       console.log = jest.genMockFn();
       var OrdinaryPlayer = require('../js/ordinary-player');
       var WarriorPlayer = require('../js/warrior-player');
-      var PlayStart = require('../js/play-start');
+      var Game = require('../js/game');
       var Armor = require('../js/armor');
       var Weapon = require('../js/weapon');
 
@@ -17,7 +17,7 @@ describe('PlayStart', function() {
       var weapon = new Weapon('屠龙刀', 7);
       var li = new WarriorPlayer('李斯',50, 10, armor, weapon);
 
-      var result = PlayStart.PK(zhangsan, li);
+      var result = Game.PK(zhangsan, li);
 
       var expertString = '战士李斯用屠龙刀攻击了普通人张三,张三受到了17点伤害,张三剩余生命：33\n\n' +
 

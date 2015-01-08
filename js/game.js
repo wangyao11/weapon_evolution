@@ -1,10 +1,10 @@
 
-function PlayStart(argument) {
+function Game(){
   // body...
 }
 
 
-PlayStart.PK = function(playerOne, playerTwo) {
+Game.PK = function(playerOne, playerTwo) {
   var result = '';
   while (true) {
     result += playerTwo.getAttackInformation(playerOne);
@@ -23,4 +23,4 @@ PlayStart.PK = function(playerOne, playerTwo) {
   return result;
 };
 
-module.exports = PlayStart;
+module.exports = Game;

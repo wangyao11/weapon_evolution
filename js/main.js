@@ -1,6 +1,6 @@
 var OrdinaryPlayer = require('../js/ordinary-player');
 var WarriorPlayer = require('../js/warrior-player');
-var PlayStart = require('../js/play-start.js');
+var Game = require('../js/game.js');
 var Armor = require('../js/armor');
 var Weapon = require('../js/weapon');
 var Fire = require('./modle/effect/fire');
@@ -26,6 +26,6 @@ function main() {
   var armor = new Armor('麒麟甲', 5);
   var li = new WarriorPlayer('李斯', 100, 10, armor, weapon);
 
-  var porpt = PlayStart.PK(zhangsan, li);
+  var porpt = Game.PK(zhangsan, li);
   console.log(porpt);
 }
