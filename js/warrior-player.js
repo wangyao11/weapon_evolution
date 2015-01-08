@@ -2,11 +2,12 @@ var _ = require('lodash');
 var Effect = require('./effect');
 var OrdinaryPlayer = require('./ordinary-player');
 var State = require('./modle/state/state');
+var NoAmrmor = require('./no-armor');
 
 function WarriorPlayer(name, hp, attackForce, armor, weapon) {
   OrdinaryPlayer.call(this, name, hp, attackForce);
 
-  this.armor = armor || '';
+  this.armor = armor || new NoAmrmor();
   this.weapon = weapon || '';
 }
 

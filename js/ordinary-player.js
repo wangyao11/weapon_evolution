@@ -34,11 +34,9 @@ OrdinaryPlayer.prototype.getAttackInformation = function (player) {
 };
 
 OrdinaryPlayer.prototype.attack = function (player) {
-  var defensive = 0;
+  var defensive = player.armor.defensive;
   var result = '';
-  if (player.armor !== '') {
-    defensive = player.armor.defensive;
-  }
+
   if (defensive > this.attackForce) {
     defensive = this.attackForce;
   }
