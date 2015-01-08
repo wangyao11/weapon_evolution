@@ -3,12 +3,13 @@ var Effect = require('./effect');
 var OrdinaryPlayer = require('./ordinary-player');
 var State = require('./modle/state/state');
 var NoAmrmor = require('./no-armor');
+var NoWeapon = require('./no-weapon');
 
 function WarriorPlayer(name, hp, attackForce, armor, weapon) {
   OrdinaryPlayer.call(this, name, hp, attackForce);
 
   this.armor = armor || new NoAmrmor();
-  this.weapon = weapon || '';
+  this.weapon = weapon || new NoWeapon();
 }
 
 WarriorPlayer.prototype = Object.create(OrdinaryPlayer.prototype);
@@ -17,10 +18,7 @@ WarriorPlayer.prototype.constructor = WarriorPlayer;
 
 WarriorPlayer.prototype.getAttackInformation = function (player) {
   var result = '';
-  var weaponAttackForce = 0;
-  if (this.weapon !== '') {
-    weaponAttackForce = this.weapon.attackForce;
-  }
+  var weaponAttackForce = weaponAttackForce = this.weapon.attackForce;
 
   var effect = this.weapon.getEffect();
   if (effect) {
