@@ -1,10 +1,10 @@
 
-function playStart(argument) {
+function PlayStart(argument) {
   // body...
 }
 
 
-playStart.PK = function(playerOne, playerTwo) {
+PlayStart.PK = function(playerOne, playerTwo) {
   var result = '';
   while (true) {
     result += playerTwo.getAttackInformation(playerOne);
@@ -19,9 +19,8 @@ playStart.PK = function(playerOne, playerTwo) {
       break;
     }
   }
+
   return result;
 };
 
-playStart.zhengchu
-
-module.exports = playStart;
+module.exports = PlayStart;

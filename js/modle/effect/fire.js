@@ -1,3 +1,5 @@
+var Effect = require('../../effect');
+
 function Fire(name, times, lethal, probability) {
   this.name = name;
   this.times = times;
@@ -5,17 +7,12 @@ function Fire(name, times, lethal, probability) {
   this.probability = probability;
 }
 
+Fire.prototype = Object.create(Effect.prototype);
+Fire.prototype.constructor = Fire;
 
 
 Fire.prototype.getEffectString = function (name) {
   return name + '着火了,';
 };
 
-Fire.prototype.calculationAp = function (playerAttackForce, weaponAttackForce) {
-  return (playerAttackForce + weaponAttackForce);
-};
-
-Fire.prototype.getCritString = function () {
-  return '';
-};
 module.exports = Fire;

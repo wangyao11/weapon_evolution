@@ -12,6 +12,7 @@ OrdinaryPlayer.prototype.getAttackInformation = function (player) {
     if (this.state !== '') {
       var stateYAndN = this.state.judge();
     }
+
     if (this.state !== '' && stateYAndN === 'yes') {
 
       result = this.state.getStateString(this);
@@ -29,15 +30,6 @@ OrdinaryPlayer.prototype.getAttackInformation = function (player) {
       this.attack(player);
       var result =this.getString(player);
     }
-  return result;
-};
-
-OrdinaryPlayer.prototype.getTrueOrFalse = function (dividend, divisor) {
-  var result = false;
-  var value = dividend/divisor;
-  if (value * divisor === dividend) {
-    result = true;
-  }
   return result;
 };
 

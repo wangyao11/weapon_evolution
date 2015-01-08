@@ -16,12 +16,11 @@ function main() {
 
   var zhangsan = new OrdinaryPlayer('张三', 1000, 10);
 
-
   var effects = [new Venom('毒', 2, 2, 0.2),
                  new Crit('crit', 3, 0.2),
                  new Fire('火', 2, 2, 0.2),
                  new Vertigo('眩晕', 2, 0.2),
-                 new Frost('冰冻', 1, 3, 0.4)];
+                 new Frost('冰冻', 1, 3, 0.2)];
 
   var weapon = new Weapon('屠龙刀', 7, effects);
   var armor = new Armor('麒麟甲', 5);
