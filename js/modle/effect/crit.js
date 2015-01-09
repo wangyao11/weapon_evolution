@@ -10,7 +10,7 @@ Crit.prototype = Object.create(Effect.prototype);
 Crit.prototype.constructor = Crit;
 
 Crit.prototype.getCritString = function (name) {
-  return name + '发动致命一击,';
+  return name + '发动了致命一击,';
 };
 
 Crit.prototype.calculationAp = function (playerAttackForce, weaponAttackForce) {

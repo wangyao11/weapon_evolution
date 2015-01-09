@@ -1,11 +1,4 @@
-jest.dontMock('../js/warrior-player');
-jest.dontMock('../js/ordinary-player');
-jest.dontMock('../js/armor');
-jest.dontMock('../js/weapon');
-jest.dontMock('../js/real-time-effect');
-jest.dontMock('../js/delay-effect');
-jest.dontMock('../js/effect');
-jest.dontMock('lodash');
+jest.autoMockOff();
 
 describe('WarriorPlayer', function() {
 
@@ -13,8 +6,12 @@ describe('WarriorPlayer', function() {
   var OrdinaryPlayer = require('../js/ordinary-player');
   var Armor = require('../js/armor');
   var Weapon = require('../js/weapon');
-  var DelayEffect = require('../js/delay-effect');
-  var RealTimeEffect = require('../js/real-time-effect');
+  var Fire = require('../js/modle/effect/fire');
+  var Crit = require('../js/modle/effect/crit');
+  var Frost = require('../js/modle/effect/frost');
+  var Venom = require('../js/modle/effect/venom');
+  var Vertigo = require('../js/modle/effect/vertigo');
+
 
   describe('#getAttackInformation()', function() {
 
@@ -33,8 +30,8 @@ describe('WarriorPlayer', function() {
 
       var lisi = new OrdinaryPlayer('李四', 20, 10);
       var armor = new Armor('麒麟甲', 5);
-      var crit = new RealTimeEffect('crit', 3, 0);
-      var weapon = new Weapon('屠龙刀', 3, crit);
+      var crit = new Crit('crit', 3, 0);
+      var weapon = new Weapon('屠龙刀', 3, [crit]);
 
       var zhangsan = new WarriorPlayer('张三',50, 5, armor, weapon);
 
@@ -47,8 +44,8 @@ describe('WarriorPlayer', function() {
 
       var lisi = new OrdinaryPlayer('李四', 20, 10);
       var armor = new Armor('麒麟甲', 5);
-      var crit = new RealTimeEffect('crit', 3, 1);
-      var weapon = new Weapon('屠龙刀', 3, crit);
+      var crit = new Crit('crit', 3, 1);
+      var weapon = new Weapon('屠龙刀', 3, [crit]);
 
       var zhangsan = new WarriorPlayer('张三',50, 5, armor, weapon);
 
@@ -61,8 +58,8 @@ describe('WarriorPlayer', function() {
 
       var lisi = new OrdinaryPlayer('李四', 20, 10);
       var armor = new Armor('麒麟甲', 5);
-      var delayEffects  = [new DelayEffect('fire', 2, 2, 1, '着火了')];
-      var weapon = new Weapon('屠龙刀', 3, null, delayEffects);
+      var fire  = new Fire('火', 2, 2, 1);
+      var weapon = new Weapon('屠龙刀', 3, [fire]);
       var zhangsan = new WarriorPlayer('张三',50, 5, armor, weapon);
 
       var result = zhangsan.getAttackInformation(lisi);
@@ -74,8 +71,8 @@ describe('WarriorPlayer', function() {
 
       var lisi = new OrdinaryPlayer('李四', 20, 10);
       var armor = new Armor('麒麟甲', 5);
-      var delayEffects  = [new DelayEffect('venom', 2, 2, 1, '中毒了')];
-      var weapon = new Weapon('屠龙刀', 3, null, delayEffects);
+      var venom  = new Venom('毒', 2, 2, 1);
+      var weapon = new Weapon('屠龙刀', 3, [venom]);
       var zhangsan = new WarriorPlayer('张三',50, 5, armor, weapon);
 
       var result = zhangsan.getAttackInformation(lisi);
@@ -87,8 +84,8 @@ describe('WarriorPlayer', function() {
 
       var lisi = new OrdinaryPlayer('李四', 20, 10);
       var armor = new Armor('麒麟甲', 5);
-      var delayEffects  = [new DelayEffect('vertigo', 2, 2, 1, '眩晕了')];
-      var weapon = new Weapon('屠龙刀', 3, null, delayEffects);
+      var vertigo  = new Vertigo('眩晕', 2, 1);
+      var weapon = new Weapon('屠龙刀', 3, [vertigo]);
       var zhangsan = new WarriorPlayer('张三',50, 5, armor, weapon);
 
       var result = zhangsan.getAttackInformation(lisi);
@@ -100,13 +97,13 @@ describe('WarriorPlayer', function() {
 
       var lisi = new OrdinaryPlayer('李四', 20, 10);
       var armor = new Armor('麒麟甲', 5);
-      var delayEffects  = [new DelayEffect('frost', 2, 2, 1, '冰封了')];
-      var weapon = new Weapon('屠龙刀', 3, null, delayEffects);
+      var frost  = new Frost('冰冻', 1, 3, 1);
+      var weapon = new Weapon('屠龙刀', 3, [frost]);
       var zhangsan = new WarriorPlayer('张三',50, 5, armor, weapon);
 
       var result = zhangsan.getAttackInformation(lisi);
 
-      expect(result).toBe('战士张三用屠龙刀攻击了普通人李四,李四受到了8点伤害,李四冰封了,李四剩余生命：12\n\n');
+      expect(result).toBe('战士张三用屠龙刀攻击了普通人李四,李四受到了8点伤害,李四冰冻了,李四剩余生命：12\n\n');
     });
 
   });

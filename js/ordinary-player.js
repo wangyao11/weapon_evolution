@@ -22,13 +22,13 @@ OrdinaryPlayer.prototype.getAttackInformation = function (player) {
 
       result = this.state.getStateString(this);
 
-      this.attack(player);
-      result += this.getString(player);
+      var damage = this.doAttack(player);
+      result += this.getString(player, damage);
       this.state.judgeState(this);
 
     } else {
-      this.attack(player);
-      var result =this.getString(player);
+      var damage = this.doAttack(player);
+      var result =this.getString(player,damage);
     }
   return result;
 };
@@ -44,10 +44,29 @@ OrdinaryPlayer.prototype.attack = function (player) {
   player.hp -= (this.attackForce - defensive);
 };
 
-OrdinaryPlayer.prototype.getString= function (player) {
-  return '普通人' + this.name + '攻击了战士' +
+OrdinaryPlayer.prototype.role = function() {
+    return '普通人';
+}
+
+OrdinaryPlayer.prototype.beAttacked = function(damage) {
+    this.hp -= damage;
+    return damage;
+};
+
+OrdinaryPlayer.prototype.getAp = function(player) {
+    return this.attackForce;
+};
+
+OrdinaryPlayer.prototype.doAttack =  function(player) {
+    var damage = player.beAttacked(this.getAp());
+
+    return damage;
+};
+
+OrdinaryPlayer.prototype.getString= function (player, damage) {
+  return this.role() + this.name + '攻击了' + player.role() +
     player.name + ',' + player.name + '受到了' +
-    (this.attackForce - player.armor.defensive) + '点伤害,' +
+    damage + '点伤害,' +
     player.name + '剩余生命：' + player.hp + '\n\n';
 };
 module.exports = OrdinaryPlayer;

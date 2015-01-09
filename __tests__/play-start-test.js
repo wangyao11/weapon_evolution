@@ -12,7 +12,7 @@ describe('PlayStart', function() {
       var Armor = require('../js/armor');
       var Weapon = require('../js/weapon');
 
-      var zhangsan = new OrdinaryPlayer('张三', 50, 10);
+      var zhangsan = new OrdinaryPlayer('张三', 50, 5);
       var armor = new Armor('麒麟甲', 5);
       var weapon = new Weapon('屠龙刀', 7);
       var li = new WarriorPlayer('李斯',50, 10, armor, weapon);

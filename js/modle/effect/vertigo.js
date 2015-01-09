@@ -10,7 +10,7 @@ Vertigo.prototype = Object.create(Effect.prototype);
 Vertigo.prototype.constructor = Vertigo;
 
 Vertigo.prototype.getEffectString = function (name) {
-  return name + '眩晕了, ';
+  return name + '眩晕了,';
 };
 
 module.exports = Vertigo;

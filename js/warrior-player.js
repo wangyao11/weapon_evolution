@@ -18,7 +18,7 @@ WarriorPlayer.prototype.constructor = WarriorPlayer;
 
 WarriorPlayer.prototype.getAttackInformation = function (player) {
   var result = '';
-  var weaponAttackForce = weaponAttackForce = this.weapon.attackForce;
+  var weaponAttackForce =  this.weapon.attackForce;
 
   var effect = this.weapon.getEffect();
   if (effect) {
@@ -29,15 +29,28 @@ WarriorPlayer.prototype.getAttackInformation = function (player) {
 
   player.hp -= effect.calculationAp(this.attackForce, weaponAttackForce);
 
-  result = '战士' + this.name +
+  result = this.role() + this.name +
            '用' + this.weapon.name +
-           '攻击了普通人' +player.name + ',' +
+           '攻击了'+ player.role() +player.name + ',' +
             effect.getCritString(this.name) +
             player.name + '受到了' + effect.calculationAp(this.attackForce, weaponAttackForce) +
            '点伤害,' + effect.getEffectString(player.name) + player.name +
            '剩余生命：' + player.hp + '\n\n';
 
   return result;
+};
+
+WarriorPlayer.prototype.role = function() {
+    return  '战士';
+}
+
+WarriorPlayer.prototype.getAp = function () {
+    return this.ap + this.weapon.attackForce;
+}
+
+WarriorPlayer.prototype.beAttacked = function(damage) {
+    this.hp -= damage;
+    return damage;
 };
 
 WarriorPlayer.prototype.additionalState = function (effect, player) {

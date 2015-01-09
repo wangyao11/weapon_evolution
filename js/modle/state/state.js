@@ -16,7 +16,7 @@ State.prototype.getState = function (effect, state) {
   } else if (effect.name === '毒') {
       result = this.getVenomState(effect, state);
   } else if (effect.name === 'crit') {
-      result = '';
+      result = state;
   } else if (effect.name === '冰冻') {
       result = this.getFrostState(effect, state);
   }
