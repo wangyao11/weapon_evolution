@@ -1,0 +1,2 @@
+/*! weapon_evolution 2016-03-29 */
+function VertigoState(a,b){this.name=a,this.times=b}VertigoState.prototype.getStateString=function(a){return this.times--,a.name+"晕倒了,无法攻击,眩晕还剩:"+this.times+"轮\n\n"},VertigoState.prototype.judge=function(){return this.times>0?"yes":""},VertigoState.prototype.judgeState=function(a){!this.times>0&&(a.state="")},module.exports=VertigoState;

@@ -1,0 +1,2 @@
+/*! weapon_evolution 2016-03-29 */
+function Effect(){}Effect.prototype.calculationAp=function(a,b){return a+b},Effect.prototype.getCritString=function(){return""},Effect.prototype.getEffectString=function(){return""},module.exports=Effect;

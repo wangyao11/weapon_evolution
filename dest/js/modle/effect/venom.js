@@ -1,0 +1,2 @@
+/*! weapon_evolution 2016-03-29 */
+function Venom(a,b,c,d){this.name=a,this.times=b,this.lethal=c,this.probability=d}var Effect=require("../../effect");Venom.prototype=Object.create(Effect.prototype),Venom.prototype.constructor=Venom,Venom.prototype.getEffectString=function(a){return a+"中毒了,"},module.exports=Venom;

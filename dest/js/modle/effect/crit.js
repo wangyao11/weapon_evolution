@@ -1,0 +1,2 @@
+/*! weapon_evolution 2016-03-29 */
+function Crit(a,b,c){this.name=a,this.multiple=b,this.probability=c}var Effect=require("../../effect");Crit.prototype=Object.create(Effect.prototype),Crit.prototype.constructor=Crit,Crit.prototype.getCritString=function(a){return a+"发动了致命一击,"},Crit.prototype.calculationAp=function(a,b){return 3*(a+b)},module.exports=Crit;

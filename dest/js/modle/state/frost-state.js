@@ -1,0 +1,2 @@
+/*! weapon_evolution 2016-03-29 */
+function FrostState(a,b,c){this.name=a,this.times=b,this.round=c}FrostState.prototype.getStateString=function(a){return this.times--,a.name+"冻得直哆嗦，没有击中\n\n"},FrostState.prototype.judge=function(){return this.round--,this.round%3===0?"yes":""},FrostState.prototype.judgeState=function(a){!this.times>0&&(a.state="")},module.exports=FrostState;

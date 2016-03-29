@@ -1,0 +1,2 @@
+/*! weapon_evolution 2016-03-29 */
+function Fire(a,b,c,d){this.name=a,this.times=b,this.lethal=c,this.probability=d}var Effect=require("../../effect");Fire.prototype=Object.create(Effect.prototype),Fire.prototype.constructor=Fire,Fire.prototype.getEffectString=function(a){return a+"着火了,"},module.exports=Fire;

@@ -1,0 +1,2 @@
+/*! weapon_evolution 2016-03-29 */
+function Game(){}Game.PK=function(a,b){for(var c="";;){if(c+=b.getAttackInformation(a),a.hp<=0){c+=a.name+"输了";break}if(c+=a.getAttackInformation(b),b.hp<=0){c+=b.name+"输了";break}}return c},module.exports=Game;

@@ -1,0 +1,2 @@
+/*! weapon_evolution 2016-03-29 */
+function Vertigo(a,b,c){this.name=a,this.times=b,this.probability=c}var Effect=require("../../effect");Vertigo.prototype=Object.create(Effect.prototype),Vertigo.prototype.constructor=Vertigo,Vertigo.prototype.getEffectString=function(a){return a+"眩晕了,"},module.exports=Vertigo;
